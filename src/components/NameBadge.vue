@@ -11,7 +11,13 @@ export default {
     },
     computed: {
         nameAbbreviation(){
+            if(!this.name.length){
+                return 
+            }
             const abbreviation = this.name.split(" ");
+            if(abbreviation.length < 1){
+                return
+            }
             const firstName = abbreviation[0];
             const lastName = abbreviation[1];
             return firstName.split("")[0] + lastName.split("")[0]

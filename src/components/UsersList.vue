@@ -2,25 +2,62 @@
 <template>
     <div class="users-page py-4">
         <div class="users-page-header pb-4">
-            <Button type="button" @click="onAddNew" size="large" id="addNewUser">+ Add new user</button>
+            <template v-if="selectedUser.length">
+                <div class="flex">
+                    <div>{{ selectedUser.length }} users selected</div>
+                    <Button @click="deleteAllSelected">Delete selected users</Button>
+                </div>
+            </template>
+            <Button type="button" @click="onAddNew" size="large" id="addNewUser" severity="primary">+ Add new user</button>
         </div>
-        <DataTable v-model:selection="selectedUser" :value="users" dataKey="id" tableStyle="min-width: 50rem">
+        <DataTable v-model:editingRows="editingRows" v-model:selection="selectedUser" editMode="row" :value="users" dataKey="id" tableStyle="min-width: 50rem" @row-edit-save="onRowEditSave">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-            <Column header="Users">
+            <Column header="Users" style="width: 50%">
                 <template #body="slotProps">
                     <UserData :name="slotProps.data.name" :email="slotProps.data.email"/>
                 </template>
                 <template #editor="{ data }">
-                    <InputText v-model="data.name" />
-                    <InputText v-model="data.email" />
+                    <div class="flex">
+                        <div class="flex flex-column mr-3">
+                            <label for="name">Name</label>
+                            <InputText id="name" v-model="data.name" size="large" aria-describedby="Name" placeholder="Enter Name"/>
+                        </div>
+                        <div class="flex flex-column">
+                            <label for="email">Email</label>
+                            <InputText id="email" v-model="data.email" size="large" aria-describedby="Email" placeholder="Enter Email"/>
+                        </div>
+                    </div>
                 </template>
             </Column>
-            <Column header="Permission">
+            <Column header="Permission" style="width: 25%">
                 <template #body="slotProps">
                     <Tag :value="slotProps.data.permission" :severity="permissionColor(slotProps.data.permission)"  />
                 </template>
+                <template #editor="{ data }">
+                    <div class="flex flex-column mr-3">
+                        <label for="permission">Permission</label>
+                        <Dropdown disabled id="permission" v-model="selectedPermission" size="large" :options="permissions" optionLabel="value" />
+                    </div>
+                </template>
             </Column>
-            <Column :rowEditor="true" style="width: 10%; min-width: 8rem" bodyStyle="text-align:center"></Column>
+            <Column style="width: 25%">
+                <template #body="slotProps">
+                    <Button @click="editRow(slotProps.data)" severity="secondary" size="large" class="mx-2">
+                        <template #icon>
+                            <img src="@/assets/svg/edit.svg"/> 
+                        </template>
+                    </Button>
+                    <Button  @click="handleDeleteUser(slotProps.data)" severity="secondary" size="large" class="mx-2">
+                        <template #icon>
+                            <img src="@/assets/svg/delete.svg"/> 
+                        </template>
+                    </Button>
+                </template>
+                <template #editor="{ data }">
+                    <Button size="large" severity="primary" class="mx-1" @click="handleRowEdit(data.id)">{{ editingRows[0].id === 0 ? "Save" : "Add" }}</Button>
+                    <Button size="large" severity="secondary" lass="mx-1"  @click="handleRowCancel(data.id)">Cancel</Button>
+                </template>
+            </Column>
         </DataTable>
     </div>
 </template>
@@ -28,18 +65,21 @@
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
+import Dropdown from 'primevue/dropdown';
 import Tag from 'primevue/tag';
 import InputText from 'primevue/inputtext'
 import { UsersService}  from '@/service/UsersService'
 import UserData from './UserData.vue';
 
 export default {
-    components: {DataTable , Column, Button, Tag, InputText, UserData},
+    components: {DataTable , Column, Button, Tag, InputText, UserData, Dropdown},
     data() {
         return {
             editingRows: [],
-            selectedUser: {},
-            users: null
+            selectedUser: [],
+            selectedPermission:   {permission: 'agent', value: "Agent"},
+            users: null,
+            permissions: [{permission: 'admin', value: "Admin"}, {permission: 'agent', value: "Agent"}]
         }
     },
     mounted(){
@@ -51,17 +91,30 @@ export default {
 
             this.users[index] = newData;
         },
+        editRow(data){            
+            this.editingRows = [data]
+        },
         onAddNew() {
-            console.log('onAddNew')
+            const newUser = { id: 0, email: '', name: '', permission: 'agent'} ;
+            this.users = [newUser, ...this.users];
+            this.editingRows = [newUser];
+        },
+        handleRowCancel(id){
+            if(id === 0){
+                this.users.shift()
+                this.editingRows = []
+            } else {
+                this.editingRows = []
+            }
         },
         permissionColor(permission){
             return permission === "admin" ? "secondary" : "primary"
         },
-        handleEditUser(){
-            console.log("handleEditUser")
-        },
         handleDeleteUser(id){
             console.log("handleDeleteUser", id)
+        },
+        deleteAllSelected(){
+            console.log("deleteAllSelected")  
         }
     }
 }

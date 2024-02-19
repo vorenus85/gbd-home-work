@@ -2,8 +2,8 @@
 $primaryColor: #1CB0D3;
 $primaryHoverColor: #475DE5;
 $buttonBg: $primaryColor;
-$checkboxHeight: 24px;
-$checkboxWidth: 24px;
+$checkboxHeight: 1.5rem;
+$checkboxWidth: 1.5rem;
 $checkBoxBorderRadius: 8px;
 
 
@@ -13,11 +13,13 @@ $checkBoxBorderRadius: 8px;
     .p-datatable-thead > tr > th{
         color: #7E7E7E;
         font-weight: 400;
-        font-size: 20px
+        font-size: 1.25rem;
+        border-color: transparent;
     }
 
-    .p-datatable-thead > tr > td{
+    .p-datatable-tbody > tr > td{
         padding: 1.2rem 1rem;
+        border-color: transparent;
     }
 }
 
@@ -32,17 +34,30 @@ $checkBoxBorderRadius: 8px;
     color: #624D9C;
     &.p-tag-secondary {
         color: #624D9C;
+        background: #EFE2FE;
     }
 }
 
 //button
 .p-button {
-    background-color: $buttonBg;
-    border-color:  $buttonBg;
+    &.p-button-primary{
+        background-color: $buttonBg;
+        border-color:  $buttonBg;
+    }
 
     &.p-button-lg {
         font-size: 1.125rem;
         padding: 0.85rem 1.35rem;
+    }
+
+    &.p-button-icon-only {
+        width: 3rem;
+        height: 3.125rem;
+        border-width: 2px;
+    }
+
+    &.p-button-icon-only.p-button-secondary {
+        background-color: transparent;
     }
 
 
@@ -53,7 +68,9 @@ $checkBoxBorderRadius: 8px;
 .p-checkbox {
     height: $checkboxHeight;
     width: $checkboxWidth;
-    &-box {
+    & &-box {
+        height: $checkboxHeight;
+        width: $checkboxWidth;
         border-radius: $checkBoxBorderRadius;
     }
 

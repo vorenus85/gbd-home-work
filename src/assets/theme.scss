@@ -1,0 +1,64 @@
+// https://www.primefaces.org/designer/api/primevue/3.9.0
+$primaryColor: #1CB0D3;
+$primaryHoverColor: #475DE5;
+$buttonBg: $primaryColor;
+$checkboxHeight: 24px;
+$checkboxWidth: 24px;
+$checkBoxBorderRadius: 8px;
+
+
+// Datatable
+
+.p-datatable {
+    .p-datatable-thead > tr > th{
+        color: #7E7E7E;
+        font-weight: 400;
+        font-size: 20px
+    }
+
+    .p-datatable-thead > tr > td{
+        padding: 1.2rem 1rem;
+    }
+}
+
+
+// Tag
+.p-tag {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 0.4rem 1rem;
+    border-radius: 10px;
+    color: #624D9C;
+    &.p-tag-secondary {
+        color: #624D9C;
+    }
+}
+
+//button
+.p-button {
+    background-color: $buttonBg;
+    border-color:  $buttonBg;
+
+    &.p-button-lg {
+        font-size: 1.125rem;
+        padding: 0.85rem 1.35rem;
+    }
+
+
+}
+
+// Checkbox
+
+.p-checkbox {
+    height: $checkboxHeight;
+    width: $checkboxWidth;
+    &-box {
+        border-radius: $checkBoxBorderRadius;
+    }
+
+    &.p-highlight .p-checkbox-box{
+        border-color: $primaryHoverColor;
+        background: $primaryHoverColor;
+    }
+}

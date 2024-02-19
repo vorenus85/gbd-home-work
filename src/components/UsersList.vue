@@ -12,7 +12,7 @@
         </div>
         <DataTable v-model:editingRows="editingRows" paginator  :rows="6" v-model:selection="selectedUser" editMode="row" :value="users" dataKey="id" tableStyle="min-width: 50rem" @row-edit-save="onRowEditSave">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-            <Column header="Users" style="width: 50%" class="pr-0">
+            <Column header="Users" style="width: 50%" class="pr-0 users-column">
                 <template #body="slotProps">
                     <UserData :name="slotProps.data.name" :email="slotProps.data.email"/>
                 </template>
@@ -42,12 +42,12 @@
             </Column>
             <Column style="width: 25%" class="vertical-align-bottom">
                 <template #body="slotProps">
-                    <Button @click="editRow(slotProps.data)" severity="secondary" size="large" class="mx-2">
+                    <Button @click="editRow(slotProps.data)" severity="secondary" size="large" class="mr-2">
                         <template #icon>
                             <img src="@/assets/svg/edit.svg"/> 
                         </template>
                     </Button>
-                    <Button  @click="handleDeleteUser(slotProps.data)" severity="secondary" size="large" class="mx-2">
+                    <Button  @click="handleDeleteUser(slotProps.data)" severity="secondary" size="large" class="ml-2">
                         <template #icon>
                             <img src="@/assets/svg/delete.svg"/> 
                         </template>
@@ -55,8 +55,8 @@
                 </template>
                 <template #editor="{ data }">
                     <div class="flex ">
-                        <Button size="large" severity="primary" class="mx-1" @click="handleRowEdit(data)">{{ editingRows[0].id === 0 ? "Save" : "Add" }}</Button>
-                        <Button size="large" severity="secondary" lass="mx-1"  @click="handleRowCancel(data.id)">Cancel</Button>
+                        <Button size="large" severity="primary" class="mr-1" @click="handleRowEdit(data)">{{ editingRows[0].id === 0 ? "Save" : "Add" }}</Button>
+                        <Button size="large" severity="secondary" lass="ml-1"  @click="handleRowCancel(data.id)">Cancel</Button>
                     </div>
                     
                 </template>
@@ -125,10 +125,18 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .users-page-header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.users-column {
+    &.p-cell-editing {
+        display: block;
+        margin-left: -3rem;
+        width: calc(100% + 3rem)!important;
+    }
 }
 </style>

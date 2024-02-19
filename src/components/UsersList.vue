@@ -10,21 +10,21 @@
             </template>
             <Button type="button" @click="onAddNew" size="large" id="addNewUser" severity="primary">+ Add new user</button>
         </div>
-        <DataTable v-model:editingRows="editingRows" v-model:selection="selectedUser" editMode="row" :value="users" dataKey="id" tableStyle="min-width: 50rem" @row-edit-save="onRowEditSave">
+        <DataTable v-model:editingRows="editingRows" paginator  :rows="6" v-model:selection="selectedUser" editMode="row" :value="users" dataKey="id" tableStyle="min-width: 50rem" @row-edit-save="onRowEditSave">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-            <Column header="Users" style="width: 50%">
+            <Column header="Users" style="width: 50%" class="pr-0">
                 <template #body="slotProps">
                     <UserData :name="slotProps.data.name" :email="slotProps.data.email"/>
                 </template>
                 <template #editor="{ data }">
                     <div class="flex">
-                        <div class="flex flex-column mr-3">
+                        <div class="flex flex-column mr-3 flex-1">
                             <label for="name">Name</label>
                             <InputText id="name" v-model="data.name" size="large" aria-describedby="Name" placeholder="Enter Name"/>
                         </div>
-                        <div class="flex flex-column">
+                        <div class="flex flex-column flex-1">
                             <label for="email">Email</label>
-                            <InputText id="email" v-model="data.email" size="large" aria-describedby="Email" placeholder="Enter Email"/>
+                            <InputText id="email" type="email" v-model="data.email" size="large" aria-describedby="Email" placeholder="Enter Email"/>
                         </div>
                     </div>
                 </template>
@@ -40,7 +40,7 @@
                     </div>
                 </template>
             </Column>
-            <Column style="width: 25%">
+            <Column style="width: 25%" class="vertical-align-bottom">
                 <template #body="slotProps">
                     <Button @click="editRow(slotProps.data)" severity="secondary" size="large" class="mx-2">
                         <template #icon>
@@ -54,8 +54,11 @@
                     </Button>
                 </template>
                 <template #editor="{ data }">
-                    <Button size="large" severity="primary" class="mx-1" @click="handleRowEdit(data.id)">{{ editingRows[0].id === 0 ? "Save" : "Add" }}</Button>
-                    <Button size="large" severity="secondary" lass="mx-1"  @click="handleRowCancel(data.id)">Cancel</Button>
+                    <div class="flex ">
+                        <Button size="large" severity="primary" class="mx-1" @click="handleRowEdit(data)">{{ editingRows[0].id === 0 ? "Save" : "Add" }}</Button>
+                        <Button size="large" severity="secondary" lass="mx-1"  @click="handleRowCancel(data.id)">Cancel</Button>
+                    </div>
+                    
                 </template>
             </Column>
         </DataTable>
@@ -112,6 +115,9 @@ export default {
         },
         handleDeleteUser(id){
             console.log("handleDeleteUser", id)
+        },
+        handleRowEdit(data){
+
         },
         deleteAllSelected(){
             console.log("deleteAllSelected")  

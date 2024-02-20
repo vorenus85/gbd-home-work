@@ -15,6 +15,7 @@
           </template>
         </Button>
       </template>
+
       <Button
         class="ml-auto"
         type="button"
@@ -114,7 +115,7 @@
         <template #editor="{ data }">
           <div class="flex">
             <Button size="large" severity="primary" class="mr-1" @click="handleRowEdit(data)">{{
-              editingRows[0].id === 0 ? 'Save' : 'Add'
+              editRowButtonText
             }}</Button>
             <Button size="large" severity="secondary" lass="ml-1" @click="handleRowCancel(data.id)"
               >Cancel</Button
@@ -139,6 +140,7 @@ export default {
   components: { DataTable, Column, Button, Tag, InputText, UserData, Dropdown },
   data() {
     return {
+      actionType: '',
       editingRows: [],
       selectedUser: [],
       selectedPermission: { permission: 'agent', value: 'Agent' },
@@ -147,6 +149,12 @@ export default {
         { permission: 'admin', value: 'Admin' },
         { permission: 'agent', value: 'Agent' }
       ]
+    }
+  },
+  computed: {
+    editRowButtonText() {
+      console.log(this.editingRows)
+      return this.editingRows[0]?.id === 0 ? 'Save' : 'Add'
     }
   },
   mounted() {

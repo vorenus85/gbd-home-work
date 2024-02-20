@@ -104,7 +104,7 @@
             </template>
           </Button>
           <Button
-            @click="handleDeleteUser(slotProps.data.id)"
+            @click="triggerDeleteModal(slotProps.data)"
             severity="secondary"
             size="large"
             class="ml-2 outlined"
@@ -131,6 +131,13 @@
         </template>
       </Column>
     </DataTable>
+    <delete-confirmation-modal
+      v-if="showDeleteModal"
+      @afterHide="showDeleteModal = false"
+      :modalVisibility="showDeleteModal"
+      :users="usersToDelete"
+      @onDelete="onDeleteUsers($event)"
+    />
   </div>
 </template>
 <script>
@@ -142,14 +149,25 @@ import Tag from 'primevue/tag'
 import InputText from 'primevue/inputtext'
 import { UsersService } from '@/service/UsersService'
 import UserData from './UserData.vue'
+import DeleteConfirmationModal from './DeleteConfirmationModal.vue'
 
 export default {
-  components: { DataTable, Column, Button, Tag, InputText, UserData, Dropdown },
+  components: {
+    DataTable,
+    Column,
+    Button,
+    Tag,
+    InputText,
+    UserData,
+    Dropdown,
+    DeleteConfirmationModal
+  },
   data() {
     return {
+      showDeleteModal: false,
       editingRows: [],
+      usersToDelete: [],
       selectedUser: [],
-      // selectedPermission: { permission: 'agent', value: 'Agent' },
       users: null,
       permissions: [
         { permission: 'admin', value: 'Admin' },
@@ -197,13 +215,26 @@ export default {
     permissionColor(permission) {
       return permission === 'admin' ? 'secondary' : 'primary'
     },
-    handleDeleteUser(id) {
+    triggerDeleteModal(data) {
+      this.usersToDelete.push(data)
+      this.showDeleteModal = true
+      console.log('triggerDeleteModal')
+    },
+    onDeleteUsers(users) {
+      if (users.length === 1) {
+        this.deleteOneUser(users[0].id)
+      }
+
+      if (users.length > 1) {
+        console.log(users.length)
+      }
+      this.showDeleteModal = false
+      this.usersToDelete = []
+    },
+    deleteOneUser(id) {
       this.users = this.users.filter((user) => {
         return user.id !== id
       })
-
-      console.log(this.users)
-      console.log('handleDeleteUser', id)
     },
     handleRowEdit(data) {
       this.users = this.users.map((user) => {

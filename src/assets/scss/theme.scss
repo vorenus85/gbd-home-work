@@ -6,6 +6,20 @@ $checkboxHeight: 1.5rem;
 $checkboxWidth: 1.5rem;
 $checkBoxBorderRadius: 8px;
 
+// container
+.container {
+    max-width: 100%;
+    
+
+    @media screen and (min-width: 1200px) {
+        max-width: 1050px;
+    }
+
+    @media screen and (min-width: 1600px) {
+        max-width: 1500px;
+    }
+
+}
 
 // Datatable
 

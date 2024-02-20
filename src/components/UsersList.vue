@@ -1,6 +1,6 @@
 
 <template>
-    <div class="users-page py-4">
+    <div class="users-page py-4 container">
         <div class="users-page-header pb-4">
             <template v-if="selectedUser.length">
                 <div class="flex">

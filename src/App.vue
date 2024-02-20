@@ -1,12 +1,12 @@
 <script setup>
-import UsersList from './components/UsersList.vue';
+import UsersList from './components/UsersList.vue'
 </script>
 
 <template>
-  <UsersList/>
+  <UsersList />
 </template>
 <style lang="scss">
-#app{
+#app {
   padding: 0 0 0 200px;
   background: url('@/assets/img/static_background.png') no-repeat left center;
   background-size: cover;

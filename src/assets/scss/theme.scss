@@ -1,6 +1,6 @@
 // https://www.primefaces.org/designer/api/primevue/3.9.0
-$primaryColor: #1CB0D3;
-$primaryHoverColor: #475DE5;
+$primaryColor: #1cb0d3;
+$primaryHoverColor: #475de5;
 $buttonBg: $primaryColor;
 $checkboxHeight: 1.5rem;
 $checkboxWidth: 1.5rem;
@@ -8,139 +8,134 @@ $checkBoxBorderRadius: 8px;
 
 // container
 .container {
-    max-width: 100%;
-    
+  max-width: 100%;
 
-    @media screen and (min-width: 1200px) {
-        max-width: 1050px;
-    }
+  @media screen and (min-width: 1200px) {
+    max-width: 1050px;
+  }
 
-    @media screen and (min-width: 1600px) {
-        max-width: 1500px;
-    }
-
+  @media screen and (min-width: 1600px) {
+    max-width: 1500px;
+  }
 }
 
 // Datatable
 
 .p-datatable {
+  .p-selection-column.p-cell-editing {
+    visibility: hidden;
+  }
 
-    .p-selection-column.p-cell-editing {
-        visibility: hidden;
-    }
+  .p-datatable-thead > tr > th {
+    color: #7e7e7e;
+    font-weight: 400;
+    font-size: 1.25rem;
+    border-color: transparent;
+  }
 
-    .p-datatable-thead > tr > th{
-        color: #7E7E7E;
-        font-weight: 400;
-        font-size: 1.25rem;
-        border-color: transparent;
-    }
+  .p-datatable-tbody > tr > td {
+    padding: 1.55rem 1rem;
+    border-color: transparent;
+    position: relative;
+    z-index: 2;
+  }
 
-    .p-datatable-tbody > tr > td{
-        padding: 1.55rem 1rem;
-        border-color: transparent;
-        position: relative;
-        z-index: 2;
-    }
+  .p-datatable-tbody > tr {
+    position: relative;
+  }
 
-    .p-datatable-tbody > tr {
-        position: relative;
+  .p-datatable-tbody > tr:hover {
+    &:after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background: #f7fafc;
+      border-radius: 10px;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
-
-    .p-datatable-tbody > tr:hover {
-        &:after {
-            content: "";
-            width: 100%;
-            height: 100%;
-            background: #F7FAFC;
-            border-radius: 10px;
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-    }
+  }
 }
-
 
 // Tag
 .p-tag {
-    font-size: 16px;
-    font-weight: 400;
-    text-transform: capitalize;
-    padding: 0.4rem 1rem;
-    border-radius: 10px;
-    color: #624D9C;
-    &.p-tag-secondary {
-        color: #624D9C;
-        background: #EFE2FE;
-    }
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  color: #624d9c;
+  &.p-tag-secondary {
+    color: #624d9c;
+    background: #efe2fe;
+  }
 }
 
 //button
 .p-button {
-    &.p-button-primary{
-        background-color: $buttonBg;
-        border-color:  $buttonBg;
-    }
+  &.p-button-primary {
+    background-color: $buttonBg;
+    border-color: $buttonBg;
+  }
 
-    &.p-button-lg {
-        font-size: 1.125rem;
-        padding: 0.85rem 1.35rem;
-    }
+  &.p-button-lg {
+    font-size: 1.125rem;
+    padding: 0.85rem 1.35rem;
+    height: 50px;
+  }
 
-    &.p-button-icon-only {
-        width: 3rem;
-        height: 3.125rem;
-        border-width: 2px;
-    }
+  &.p-button-icon-only {
+    width: 3rem;
+    height: 3.125rem;
+  }
 
-    &.p-button-icon-only.p-button-secondary {
-        background-color: transparent;
-    }
-
-
+  &.p-button-secondary.outlined {
+    background-color: #f7fafc;
+    border: 2px solid #d9d9d9;
+  }
 }
 
 // Checkbox
 
 .p-checkbox {
+  height: $checkboxHeight;
+  width: $checkboxWidth;
+  & &-box {
     height: $checkboxHeight;
     width: $checkboxWidth;
-    & &-box {
-        height: $checkboxHeight;
-        width: $checkboxWidth;
-        border-radius: $checkBoxBorderRadius;
-    }
+    border-radius: $checkBoxBorderRadius;
+  }
 
-    &.p-highlight .p-checkbox-box{
-        border-color: $primaryHoverColor;
-        background: $primaryHoverColor;
-    }
+  &.p-highlight .p-checkbox-box {
+    border-color: $primaryHoverColor;
+    background: $primaryHoverColor;
+  }
 }
 
 // input
 
 label {
-    line-height: 1.625rem;
-    color: #7B7B7B;
+  line-height: 1.625rem;
+  color: #7b7b7b;
 }
 
 .p-inputtext {
-    border-color: #D9D9D9;
-    color: #7E7E7E;
-    &.p-inputtext-lg{
-        padding: 0.8rem 0.9375rem;
-    }
-    &:enabled:focus {
-        outline: 1px solid $primaryHoverColor;
-    }
+  border-color: #d9d9d9;
+  color: #7e7e7e;
+  &.p-inputtext-lg {
+    padding: 0.8rem 0.9375rem;
+  }
+  &:enabled:focus {
+    outline: 1px solid $primaryHoverColor;
+  }
 }
 
 // dropdown
 
 .p-dropdown {
-    .p-inputtext {
-        padding: 0.8rem 0.9375rem;
-    }
+  .p-inputtext {
+    padding: 0.8rem 0.9375rem;
+  }
 }

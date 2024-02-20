@@ -104,7 +104,7 @@
             </template>
           </Button>
           <Button
-            @click="handleDeleteUser(slotProps.data)"
+            @click="handleDeleteUser(slotProps.data.id)"
             severity="secondary"
             size="large"
             class="ml-2 outlined"
@@ -198,9 +198,22 @@ export default {
       return permission === 'admin' ? 'secondary' : 'primary'
     },
     handleDeleteUser(id) {
+      this.users = this.users.filter((user) => {
+        return user.id !== id
+      })
+
+      console.log(this.users)
       console.log('handleDeleteUser', id)
     },
-    handleRowEdit(data) {},
+    handleRowEdit(data) {
+      this.users = this.users.map((user) => {
+        if (user.id === data.id) {
+          return { ...data }
+        }
+        return user
+      })
+      this.editingRows = []
+    },
     deleteAllSelected() {
       console.log('deleteAllSelected')
     }

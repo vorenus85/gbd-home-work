@@ -1,6 +1,6 @@
 <template>
   <div class="name-badge" :style="{ backgroundColor: randomBackground }">
-    {{ nameAbbreviation }}
+    {{ monogram }}
   </div>
 </template>
 <script>
@@ -11,22 +11,29 @@ export default {
       default: ''
     }
   },
+  data() {
+    return {
+      palette: ['#31F1AC', '#1C40A3', '#DE40A3']
+    }
+  },
   computed: {
-    nameAbbreviation() {
+    monogram() {
       if (!this.name.length) {
         return
       }
-      const abbreviation = this.name.split(' ')
-      if (abbreviation.length < 1) {
-        return
+      const monogram = this.name.split(' ')
+      if (monogram.length < 1) {
+        return ''
       }
-      const firstName = abbreviation[0]
-      const lastName = abbreviation[1]
-      return firstName.split('')[0] + lastName.split('')[0]
+
+      if (monogram.length === 1) {
+        return monogram[0].split('')[0]
+      }
+
+      return monogram[0].split('')[0] + monogram[1].split('')[0]
     },
     randomBackground() {
-      const palette = ['#31F1AC', '#1C40A3', '#DE40A3']
-      return palette[Math.floor(Math.random() * palette.length)]
+      return this.palette[Math.floor(Math.random() * this.palette.length)]
     }
   }
 }

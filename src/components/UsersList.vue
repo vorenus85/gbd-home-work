@@ -23,6 +23,7 @@
         size="large"
         id="addNewUser"
         severity="primary"
+        :disabled="editingRows.length"
         >+ Add new user</Button
       >
     </div>
@@ -79,11 +80,12 @@
           <div class="flex flex-column mr-3">
             <label for="permission">Permission</label>
             <Dropdown
-              disabled
               id="permission"
-              v-model="selectedPermission"
+              disabled
+              v-model="data.permission"
               size="large"
               :options="permissions"
+              optionValue="permission"
               optionLabel="value"
             />
           </div>
@@ -114,9 +116,14 @@
         </template>
         <template #editor="{ data }">
           <div class="flex">
-            <Button size="large" severity="primary" class="mr-1" @click="handleRowEdit(data)">{{
-              editRowButtonText
-            }}</Button>
+            <Button
+              size="large"
+              severity="primary"
+              class="mr-1"
+              @click="handleRowEdit(data)"
+              :disabled="isDisabledEditButton(data)"
+              >{{ editRowButtonText }}</Button
+            >
             <Button size="large" severity="secondary" lass="ml-1" @click="handleRowCancel(data.id)"
               >Cancel</Button
             >
@@ -140,10 +147,9 @@ export default {
   components: { DataTable, Column, Button, Tag, InputText, UserData, Dropdown },
   data() {
     return {
-      actionType: '',
       editingRows: [],
       selectedUser: [],
-      selectedPermission: { permission: 'agent', value: 'Agent' },
+      // selectedPermission: { permission: 'agent', value: 'Agent' },
       users: null,
       permissions: [
         { permission: 'admin', value: 'Admin' },
@@ -153,14 +159,20 @@ export default {
   },
   computed: {
     editRowButtonText() {
-      console.log(this.editingRows)
-      return this.editingRows[0]?.id === 0 ? 'Save' : 'Add'
+      return this.editingRows[0]?.id === 0 ? 'Add' : 'Save'
     }
   },
   mounted() {
     UsersService.getUsers().then((data) => (this.users = data))
   },
   methods: {
+    isDisabledEditButton(data) {
+      if (data?.name === '' || data?.email === '') {
+        return true
+      }
+
+      return false
+    },
     onRowEditSave(event) {
       let { newData, index } = event
 

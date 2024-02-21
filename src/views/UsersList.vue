@@ -36,7 +36,6 @@
       :value="users"
       dataKey="id"
       tableStyle="min-width: 50rem"
-      @row-edit-save="onRowEditSave"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column header="Users" style="width: 50%" class="pr-0 users-column">
@@ -150,6 +149,7 @@ import InputText from 'primevue/inputtext'
 import { UsersService } from '@/service/UsersService'
 import UserData from '../components/UserData.vue'
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal.vue'
+import { nanoid } from 'nanoid'
 
 export default {
   components: {
@@ -191,11 +191,6 @@ export default {
 
       return false
     },
-    onRowEditSave(event) {
-      let { newData, index } = event
-
-      this.users[index] = newData
-    },
     editRow(data) {
       this.editingRows = [data]
     },
@@ -218,7 +213,6 @@ export default {
     triggerDeleteModal(data) {
       this.usersToDelete.push(data)
       this.showDeleteModal = true
-      console.log('triggerDeleteModal')
     },
     onDeleteUsers(users) {
       if (users.length === 1) {
@@ -244,6 +238,14 @@ export default {
         return user
       })
       this.editingRows = []
+
+      // if add new move to end of list, create unique id
+      if (data?.id === 0) {
+        let [first] = this.users
+        first.id = nanoid()
+        this.users.shift()
+        this.users.push(first)
+      }
     },
     deleteAllSelected() {
       console.log('deleteAllSelected')

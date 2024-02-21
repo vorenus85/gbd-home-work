@@ -140,6 +140,32 @@ label {
   }
 }
 
+// Paginator
+.p-paginator {
+  justify-content: flex-start;
+  margin-top: 3rem;
+
+  .p-paginator-pages .p-paginator-page {
+    min-width: 1.875rem;
+    height: 1.688rem;
+    border-radius: 10px;
+    font-size: 0.938rem;
+    color: #7E7E7E;
+    margin: 0 0.25rem !important;
+
+    &.p-highlight{
+     color: #fff;
+     background: #475DE5;
+     border-color: #475DE5; 
+    }
+  }
+
+  &-last,
+  &-first{
+    display: none;
+  }
+}
+
 // Dialog
 
 .p-dialog {

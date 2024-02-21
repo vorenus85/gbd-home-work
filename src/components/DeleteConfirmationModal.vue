@@ -1,16 +1,24 @@
 <template>
-  <Dialog
-    v-model:visible="visible"
-    modal
-    :style="{ width: '50vw' }"
-    :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
-  >
-    <p class="m-0">
+  <Dialog v-model:visible="visible" modal :style="{ width: '37vw' }">
+    <p class="m-0 dialog-text">
       Do you want to Delete <b>{{ userToDelete }}</b> from the List ?
     </p>
-    <div class="flex justify-content-end gap-2">
-      <Button type="button" label="Delete" @click="$emit('onDelete', users)"></Button>
-      <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+    <div class="flex justify-content-center align-items-center gap-2 pt-3">
+      <Button
+        class="flex-grow-1"
+        type="button"
+        label="Delete"
+        @click="$emit('onDelete', users)"
+        size="large"
+      ></Button>
+      <Button
+        class="flex-grow-1"
+        type="button"
+        label="Cancel"
+        severity="secondary"
+        @click="visible = false"
+        size="large"
+      ></Button>
     </div>
   </Dialog>
 </template>
@@ -42,3 +50,9 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.dialog-text {
+  font-size: 1.313rem;
+  line-height: 1.5;
+}
+</style>

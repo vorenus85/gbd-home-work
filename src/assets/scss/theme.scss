@@ -139,3 +139,15 @@ label {
     padding: 0.8rem 0.9375rem;
   }
 }
+
+// Dialog
+
+.p-dialog {
+  .p-dialog-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .p-dialog-content {
+    padding: 0 2.5rem 2.5rem 2.5rem;
+  }
+}

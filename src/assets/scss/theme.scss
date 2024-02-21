@@ -130,6 +130,10 @@ label {
   &:enabled:focus {
     outline: 1px solid $primaryHoverColor;
   }
+
+  &::placeholder {
+    color: #B4B4B4;
+  }
 }
 
 // dropdown
@@ -137,6 +141,10 @@ label {
 .p-dropdown {
   .p-inputtext {
     padding: 0.8rem 0.9375rem;
+  }
+
+  &.p-disabled {
+    background-color: #F1F1F1;
   }
 }
 

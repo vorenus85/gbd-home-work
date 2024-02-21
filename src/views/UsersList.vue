@@ -4,8 +4,8 @@
       <template v-if="selectedUser.length">
         <div class="selected-text mr-5">{{ selectedUser.length }} users selected</div>
         <Button
-          @click="deleteAllSelected"
-          label="Delete selected users"
+          @click="onDeleteAllSelected"
+          :label="selectedUser.length > 1 ? `Delete selected users` : `Delete`"
           severity="secondary"
           class="outlined mr-3"
           size="large"
@@ -132,7 +132,7 @@
     </DataTable>
     <delete-confirmation-modal
       v-if="showDeleteModal"
-      @afterHide="showDeleteModal = false"
+      @afterHide="onCloseDelete"
       :modalVisibility="showDeleteModal"
       :users="usersToDelete"
       @onDelete="onDeleteUsers($event)"
@@ -220,10 +220,11 @@ export default {
       }
 
       if (users.length > 1) {
-        console.log(users.length)
+        this.deleteMoreUser()
       }
       this.showDeleteModal = false
       this.usersToDelete = []
+      this.selectedUser = []
     },
     deleteOneUser(id) {
       this.users = this.users.filter((user) => {
@@ -247,8 +248,23 @@ export default {
         this.users.push(first)
       }
     },
-    deleteAllSelected() {
-      console.log('deleteAllSelected')
+    onCloseDelete() {
+      this.showDeleteModal = false
+      this.usersToDelete = []
+    },
+    deleteMoreUser() {
+      this.users = this.users.filter((user) => {
+        for (let i = 0; i < this.usersToDelete.length; i++) {
+          if (user.id === this.usersToDelete[i].id) {
+            return false
+          }
+        }
+        return true
+      })
+    },
+    onDeleteAllSelected() {
+      this.showDeleteModal = true
+      this.usersToDelete = this.selectedUser
     }
   }
 }

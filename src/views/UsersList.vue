@@ -38,7 +38,7 @@
       tableStyle="min-width: 50rem"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column header="Users" style="width: 50%" class="pr-0 users-column">
+      <Column field="name" sortable header="Users" style="width: 50%" class="pr-0 users-column">
         <template #body="slotProps">
           <UserData :name="slotProps.data.name" :email="slotProps.data.email" />
         </template>
@@ -68,7 +68,7 @@
           </div>
         </template>
       </Column>
-      <Column header="Permission" style="width: 25%">
+      <Column field="permission" sortable header="Permission" style="width: 25%">
         <template #body="slotProps">
           <Tag
             :value="slotProps.data.permission"

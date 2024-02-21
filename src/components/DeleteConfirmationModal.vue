@@ -1,6 +1,6 @@
 <template>
   <Dialog v-model:visible="visible" modal :style="{ width: '37vw' }">
-    <p class="m-0 dialog-text">
+    <p class="mt-0 dialog-text">
       Do you want to Delete <b>{{ userToDelete }}</b> from the List ?
     </p>
     <div class="flex justify-content-center align-items-center gap-2 pt-3">
@@ -54,5 +54,6 @@ export default {
 .dialog-text {
   font-size: 1.313rem;
   line-height: 1.5;
+  text-align: center;
 }
 </style>

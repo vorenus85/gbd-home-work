@@ -3,13 +3,14 @@
     <p class="mt-0 dialog-text">
       Do you want to Delete <b>{{ userToDelete }}</b> from the List ?
     </p>
-    <div class="flex justify-content-center align-items-center gap-2 pt-3">
+    <div class="flex justify-content-center align-items-center gap-3 pt-3">
       <Button
         class="flex-grow-1"
         type="button"
         label="Delete"
         @click="$emit('onDelete', users)"
         size="large"
+        severity="info"
       ></Button>
       <Button
         class="flex-grow-1"

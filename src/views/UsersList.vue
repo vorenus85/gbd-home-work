@@ -1,5 +1,5 @@
 <template>
-  <div class="users-page py-4 container ml-5">
+  <div class="users-page pt-4 container ml-5">
     <div class="users-page-header pb-4 flex pl-3">
       <template v-if="selectedUser.length">
         <div class="selected-text mr-5">{{ selectedUser.length }} users selected</div>
@@ -38,7 +38,7 @@
       tableStyle="min-width: 50rem"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="name" sortable header="Users" style="width: 50%" class="pr-0 users-column">
+      <Column field="name" header="Users" style="width: 50%" class="pr-0 users-column">
         <template #body="slotProps">
           <UserData :name="slotProps.data.name" :email="slotProps.data.email" />
         </template>
@@ -68,7 +68,7 @@
           </div>
         </template>
       </Column>
-      <Column field="permission" sortable header="Permission" style="width: 25%">
+      <Column field="permission" header="Permission" style="width: 25%">
         <template #body="slotProps">
           <Tag
             :value="slotProps.data.permission"

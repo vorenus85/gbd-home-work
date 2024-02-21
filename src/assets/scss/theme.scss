@@ -22,6 +22,7 @@ $checkBoxBorderRadius: 8px;
 // Datatable
 
 .p-datatable {
+
   .p-selection-column.p-cell-editing {
     visibility: hidden;
   }
@@ -75,9 +76,26 @@ $checkBoxBorderRadius: 8px;
 
 //button
 .p-button {
+
+  &.p-button-info {
+    background-color: $primaryHoverColor;
+    border-color: $primaryHoverColor;
+    &:hover,
+    &:focus {
+      background-color: darken($primaryHoverColor, 10%);
+      border-color: darken($primaryHoverColor, 10%);
+    }
+  }
+
   &.p-button-primary {
     background-color: $buttonBg;
     border-color: $buttonBg;
+
+    &:hover,
+    &:focus {
+      background-color: darken($buttonBg, 10%);
+      border-color: darken($buttonBg, 10%);
+    }
   }
 
   &.p-button-lg {
@@ -94,26 +112,18 @@ $checkBoxBorderRadius: 8px;
   &.p-button-secondary.outlined {
     background-color: #f7fafc;
     border: 2px solid #d9d9d9;
+    &:hover,
+    &:focus {
+      background-color: #1CB0D3;
+      border-color: #1CB0D3;
+      color: #fff;
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
   }
 }
-
-// Checkbox
-
-.p-checkbox {
-  height: $checkboxHeight;
-  width: $checkboxWidth;
-  & &-box {
-    height: $checkboxHeight;
-    width: $checkboxWidth;
-    border-radius: $checkBoxBorderRadius;
-  }
-
-  &.p-highlight .p-checkbox-box {
-    border-color: $primaryHoverColor;
-    background: $primaryHoverColor;
-  }
-}
-
 // input
 
 label {

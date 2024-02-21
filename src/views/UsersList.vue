@@ -148,8 +148,8 @@ import Dropdown from 'primevue/dropdown'
 import Tag from 'primevue/tag'
 import InputText from 'primevue/inputtext'
 import { UsersService } from '@/service/UsersService'
-import UserData from './UserData.vue'
-import DeleteConfirmationModal from './DeleteConfirmationModal.vue'
+import UserData from '../components/UserData.vue'
+import DeleteConfirmationModal from '../components/DeleteConfirmationModal.vue'
 
 export default {
   components: {

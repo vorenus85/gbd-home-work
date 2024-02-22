@@ -188,7 +188,6 @@ export default {
       if (data?.name === '' || data?.email === '') {
         return true
       }
-
       return false
     },
     editRow(data) {
@@ -202,10 +201,8 @@ export default {
     handleRowCancel(id) {
       if (id === 0) {
         this.users.shift()
-        this.editingRows = []
-      } else {
-        this.editingRows = []
       }
+      this.editingRows = []
     },
     permissionColor(permission) {
       return permission === 'admin' ? 'secondary' : 'primary'

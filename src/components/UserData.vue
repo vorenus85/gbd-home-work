@@ -1,5 +1,5 @@
 <template>
-  <div class="user-data">
+  <div class="user-data flex">
     <div class="user-data-left">
       <NameBadge :name="name" />
     </div>
@@ -27,11 +27,6 @@ export default {
 </script>
 <style lang="scss">
 .user-data {
-  display: flex;
-
-  &-left {
-  }
-
   &-right {
     display: flex;
     flex-direction: column;

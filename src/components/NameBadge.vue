@@ -18,10 +18,11 @@ export default {
   },
   computed: {
     monogram() {
+      const monogram = this.name.split(' ')
       if (!this.name.length) {
         return
       }
-      const monogram = this.name.split(' ')
+
       if (monogram.length < 1) {
         return ''
       }

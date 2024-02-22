@@ -130,7 +130,7 @@
         </template>
       </Column>
     </DataTable>
-    <delete-confirmation-modal
+    <delete-modal
       v-if="showDeleteModal"
       @afterHide="onCloseDelete"
       :modalVisibility="showDeleteModal"
@@ -148,7 +148,7 @@ import Tag from 'primevue/tag'
 import InputText from 'primevue/inputtext'
 import { UsersService } from '@/service/UsersService'
 import UserData from '../components/UserData.vue'
-import DeleteConfirmationModal from '../components/DeleteConfirmationModal.vue'
+import DeleteModal from '../components/DeleteModal.vue'
 import { nanoid } from 'nanoid'
 
 export default {
@@ -160,7 +160,7 @@ export default {
     InputText,
     UserData,
     Dropdown,
-    DeleteConfirmationModal
+    DeleteModal
   },
   data() {
     return {

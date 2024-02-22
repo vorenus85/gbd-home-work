@@ -1,0 +1,21 @@
+// input
+
+label {
+    line-height: 1.625rem;
+    color: #7b7b7b;
+  }
+  
+  .p-inputtext {
+    border-color: $borderColor;
+    color: $inputColor;
+    &.p-inputtext-lg {
+      padding: 0.8rem 0.9375rem;
+    }
+    &:enabled:focus {
+      outline: 1px solid $primaryHoverColor;
+    }
+  
+    &::placeholder {
+      color: #B4B4B4;
+    }
+  }

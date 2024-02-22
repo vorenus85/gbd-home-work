@@ -1,0 +1,25 @@
+// Paginator
+.p-paginator {
+    justify-content: flex-start;
+    margin-top: 3rem;
+  
+    .p-paginator-pages .p-paginator-page {
+      min-width: 1.875rem;
+      height: 1.688rem;
+      border-radius: 10px;
+      font-size: 0.938rem;
+      color: $inputColor;
+      margin: 0 0.25rem !important;
+  
+      &.p-highlight{
+       color: #fff;
+       background: $primaryHoverColor;
+       border-color: $primaryHoverColor;
+      }
+    }
+  
+    &-last,
+    &-first{
+      display: none;
+    }
+  }

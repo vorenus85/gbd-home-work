@@ -1,0 +1,40 @@
+// Datatable
+
+.p-datatable {
+
+    .p-selection-column.p-cell-editing {
+      visibility: hidden;
+    }
+  
+    .p-datatable-thead > tr > th {
+      color: $inputColor;
+      font-weight: 400;
+      font-size: 1.25rem;
+      border-color: transparent;
+    }
+  
+    .p-datatable-tbody > tr > td {
+      padding: 1.55rem 1rem;
+      border-color: transparent;
+      position: relative;
+      z-index: 2;
+    }
+  
+    .p-datatable-tbody > tr {
+      position: relative;
+    }
+  
+    .p-datatable-tbody > tr:hover {
+      &:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: #f7fafc;
+        border-radius: 10px;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }

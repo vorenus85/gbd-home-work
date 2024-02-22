@@ -1,0 +1,13 @@
+// Tag
+.p-tag {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 0.4rem 1rem;
+    border-radius: 10px;
+    color: #624d9c;
+    &.p-tag-secondary {
+      color: #624d9c;
+      background: #efe2fe;
+    }
+  }

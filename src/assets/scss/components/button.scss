@@ -1,0 +1,50 @@
+//button
+.p-button {
+
+    &.p-button-info {
+      background-color: $primaryHoverColor;
+      border-color: $primaryHoverColor;
+      &:hover,
+      &:focus {
+        background-color: darken($primaryHoverColor, 10%);
+        border-color: darken($primaryHoverColor, 10%);
+      }
+    }
+  
+    &.p-button-primary {
+      background-color: $buttonBg;
+      border-color: $buttonBg;
+  
+      &:hover,
+      &:focus {
+        background-color: darken($buttonBg, 10%);
+        border-color: darken($buttonBg, 10%);
+      }
+    }
+  
+    &.p-button-lg {
+      font-size: 1.125rem;
+      padding: 0.85rem 1.35rem;
+      height: 50px;
+    }
+  
+    &.p-button-icon-only {
+      width: 3rem;
+      height: 3.125rem;
+    }
+  
+    &.p-button-secondary.outlined {
+      background-color: #f7fafc;
+      border: 2px solid $borderColor;
+      &:hover,
+      &:focus {
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+        color: #fff;
+  
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+  }
